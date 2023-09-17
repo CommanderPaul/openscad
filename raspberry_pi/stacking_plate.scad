@@ -26,6 +26,7 @@ module draw_everything(){
     difference(){
         union(){
         standoff_tab_placement();
+        //extra_tabs_placement();  If you don't have "grub screws"
         draw_plate();
     }pcb_screw_placement();}
 }
@@ -40,14 +41,18 @@ module draw_plate(){
 
 module standoff_tab_placement(){
     // x, y, z_rotate
-    standoff_tab(29, -29, -90);
-    standoff_tab(-29, -29, 90);
-    standoff_tab(15, 43.5, 0);
-    standoff_tab(-15, 43.5, 0);
     standoff_tab(28, -42.5, 225);
     standoff_tab(-28, -42.5, -225);
     standoff_tab(-28, 42.5, 45);
     standoff_tab(28, 42.5, -45);
+}
+
+module extra_tabs_placement(){
+    // x, y, z_rotate
+    standoff_tab(29, -29, -90);
+    standoff_tab(-29, -29, 90);
+    standoff_tab(15, 43.5, 0);
+    standoff_tab(-15, 43.5, 0);
 }
 
 module standoff_tab(x, y, z_rotate){

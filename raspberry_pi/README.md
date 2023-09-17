@@ -1,1 +1,1 @@
-![alt text](https://github.com/CommanderPaul/openscad/blob/master/stacking_plate.png?raw=true)
+![Alt stacking plate](https://github.com/CommanderPaul/openscad/blob/master/raspberry_pi/stacking_plate.png)

@@ -35,8 +35,34 @@ module draw_parts(){
  // translate([0,-110,0])
  // post_clamp_socket_connector_1(knob_height, knob_diameter, screw_hole_diameter, number_of_fragments);
   
-    socket_pin_connector_for_mic(knob_height, knob_diameter, screw_hole_diameter, number_of_fragments);
+  //  socket_pin_connector_for_mic(knob_height, knob_diameter, screw_hole_diameter, number_of_fragments);
   
+  
+  // supported socket pin connector
+  supported_socket_pin_connector(knob_height, knob_diameter, screw_hole_diameter, number_of_fragments);
+  
+}
+
+module supported_socket_pin_connector(knob_height, knob_diameter, screw_hole_diameter, number_of_fragments){
+  // one off for extra long extension to support heavy object
+  span_length = 220;
+  rotate_pin = false;
+  socket_gap_override = 0;
+  pin_height_override = 0;
+  
+  translate([span_length + knob_diameter,0,0])rotate([0,180,0])
+  socket_connector(knob_height, knob_diameter, screw_hole_diameter, span_length,socket_gap_override, number_of_fragments);
+
+  pin_connector(knob_height, knob_diameter, screw_hole_diameter, segment_length, socket_gap_override, number_of_fragments);
+  
+  segment_length = knob_diameter;
+  translate([0,0,-80])
+  pin_connector(knob_height, knob_diameter, screw_hole_diameter, segment_length, socket_gap_override, number_of_fragments);
+
+  support_length = 150;
+  translate([77.55,0,-40.37])rotate([0,-33,0])
+  color("lightblue")
+  cube([support_length, knob_height, knob_height], center = true);
 }
 
 module post_clamp_socket_connector_1(knob_height, knob_diameter, screw_hole_diameter, number_of_fragments){
@@ -181,18 +207,6 @@ module socket_pin_connector_for_mic(knob_height, knob_diameter, screw_hole_diame
   }
   }
   
-  
-  
-
-
-
-
-  
-  
-  
-  
-  
-  
 }
 
 module socket_pin_connector_1(knob_height, knob_diameter, screw_hole_diameter, number_of_fragments){
@@ -309,7 +323,6 @@ module socket_cylinder(knob_height, knob_diameter, number_of_fragments){
   color("lightgreen")  
   cylinder(h = knob_height, d = knob_diameter, center = true, $fn = number_of_fragments);
 }
-
 
 module pin_cylinder(knob_height, knob_diameter, height_override, number_of_fragments){
   color("lightgreen")  
